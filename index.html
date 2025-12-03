@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PalmettoSepticSupplies.com — Septic Supplies & Pickup (SC)</title>
+<meta name="description" content="Palmetto Septic Supplies — Pumps, Tanks, Pipe, Tools. In-store pickup & statewide South Carolina shipping." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+</head>
+<body>
+<header class="site-header">
+<div class="container header-row">
+<div class="brand">
+<a href="#" class="logo">Palmetto<span>Septic</span></a>
+<div class="tag">South Carolina • Pickup & Shipping</div>
+</div>
+
+<div class="search-wrap" role="search">
+<input id="searchInput" placeholder="Search pumps, tanks, pipe, part numbers..." aria-label="Search products">
+<button id="searchBtn" aria-label="Search">Search</button>
+</div>
+
+<div class="header-actions">
+<button id="quoteBtn" class="btn ghost">Request Quote</button>
+<button id="cartBtn" class="btn primary">Cart (<span id="cartCount">0</span>)</button>
+</div>
+</div>
+
+<nav class="categories" aria-label="Product categories">
+<a data-cat="all" class="cat active">All</a>
+<a data-cat="tanks" class="cat">Septic Tanks</a>
+<a data-cat="pumps" class="cat">Pumps & Lift Stations</a>
+<a data-cat="pipe" class="cat">Pipe & Fittings</a>
+<a data-cat="field" class="cat">Drain Field</a>
+<a data-cat="tools" class="cat">Tools & Testing</a>
+<a data-cat="chem" class="cat">Treatment/Chemicals</a>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<div class="container hero-inner">
+<h1>Palmetto Septic Supplies</h1>
+<p class="lead">Septic tanks, pumps, pipe & contractor supplies — online checkout, in-store pickup across South Carolina.</p>
+<div class="hero-ctas">
+<a href="#products" class="btn primary">Shop Now</a>
+<a href="#contractor" class="btn ghost">For Contractors</a>
+</div>
+</div>
+</section>
+
+<section id="filters" class="container filters">
+<div class="filter-row">
+<label>Sort:
+<select id="sortSelect" aria-label="Sort products">
+<option value="featured">Featured</option>
+<option value="price-asc">Price — low to high</option>
+<option value="price-desc">Price — high to low</option>
+<option value="name-asc">Name A → Z</option>
+</select>
+</label>
+
+<label>Availability:
+<select id="availSelect" aria-label="Availability filter">
+<option value="any">Any</option>
+<option value="pickup">Pickup Only</option>
+<option value="ship">Ships</option>
+</select>
+</label>
+
+<label>Min Price:
+<input id="minPrice" type="number" placeholder="0">
+</label>
+<label>Max Price:
+<input id="maxPrice" type="number" placeholder="9999">
+</label>
+
+<button id="applyFilters" class="btn">Apply</button>
+<button id="clearFilters" class="btn ghost">Clear</button>
+</div>
+</section>
+
+<section id="products" class="container products-section">
+<h2>Featured Products</h2>
+<div id="productGrid" class="product-grid" aria-live="polite">
+<!-- Products will be injected here -->
+</div>
+</section>
+
+<section id="contractor" class="container contractor">
+<h3>For Contractors</h3>
+<p>Bulk pricing, job-site delivery, and contractor accounts available. Sign up to access contractor pricing and purchase orders.</p>
+<a class="btn primary" href="#contact">Contact Sales</a>
+</section>
+
+<section id="how" class="container how-it-works">
+<h3>How Ordering Works</h3>
+<ol>
+<li>Search or browse products → add to cart or request a quote.</li>
+<li>Choose pickup at checkout or ship across South Carolina.</li>
+<li>Receive confirmation email with pickup instructions or shipping tracking.</li>
+</ol>
+</section>
+
+<section id="contact" class="container contact">
+<h3>Contact & Pickup Info</h3>
+<p><strong>Palmetto Septic Supplies</strong> — Pickup available at our Rock Hill depot (example). We ship statewide South Carolina.</p>
+<address>
+123 Depot Road, Rock Hill, SC<br>
+Mon–Fri: 7:30am–5pm • Sat: 8am–12pm
+</address>
+<p>Email: <a href="mailto:orders@palmettosepticsupplies.com">orders@palmettosepticsupplies.com</a> • Phone: (555) 555-1212</p>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="container footer-row">
+<div>&copy; <span id="year"></span> PalmettoSepticSupplies.com — South Carolina</div>
+<div class="footer-actions">
+<a href="#privacy">Privacy</a>
+<a href="#terms">Terms</a>
+</div>
+</div>
+</footer>
+
+<!-- CART + CHECKOUT MODAL -->
+<div id="cartModal" class="modal" aria-hidden="true" role="dialog" aria-label="Cart and checkout">
+<div class="modal-panel">
+<button class="modal-close" id="closeCart" aria-label="Close">✕</button>
+<h2>Your Cart</h2>
+<div id="cartItems" class="cart-items"></div>
+
+<div class="checkout">
+<h3>Checkout</h3>
+<form id="checkoutForm">
+<label>
+Full name
+<input name="name" required>
+</label>
+<label>
+Email
+<input name="email" type="email" required>
+</label>
+<label>
+Phone
+<input name="phone" required>
+</label>
+
+<fieldset>
+<legend>Fulfillment</legend>
+<label><input name="fulfill" type="radio" value="pickup" checked> In-store Pickup (Rock Hill, SC)</label>
+<label><input name="fulfill" type="radio" value="ship"> Ship within South Carolina</label>
+</fieldset>
+
+<div id="shippingAddress" style="display:none">
+<label>Address
+<input name="address">
+</label>
+<label>City
+<input name="city">
+</label>
+<label>ZIP
+<input name="zip" inputmode="numeric">
+</label>
+</div>
+
+<div class="order-summary">
+<div>Subtotal: <span id="subtotal">$0.00</span></div>
+<div>Estimated Shipping: <span id="shippingCost">$0.00</span></div>
+<div class="total">Total: <span id="orderTotal">$0.00</span></div>
+</div>
+
+<p class="note">This sample site simulates checkout. Integrate Stripe/PayPal on the server to accept payments.</p>
+
+<div class="checkout-actions">
+<button type="submit" class="btn primary">Place Order (Simulated)</button>
+<button type="button" id="clearCartBtn" class="btn ghost">Clear Cart</button>
+</div>
+
+<div id="orderMessage" role="status" aria-live="polite"></div>
+</form>
+</div>
+</div>
+</div>
